@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TechNinja Chronicles</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" rel="stylesheet">
+    <style>
+        :root {
+            --neon-pink: #ff61b0;
+            --neon-blue: #00f6ff;
+        }
+        
+        body {
+            font-family: monospace;
+            background-color: #1a1a1a;
+            color: #ffffff;
+            line-height: 1.6;
+            margin: 0;
+            padding: 0;
+        }
+
+        header {
+            background: linear-gradient(45deg, var(--neon-pink), var(--neon-blue));
+            padding: 2rem;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .glitch-container {
+            position: relative;
+        }
+
+        .glitch {
+            font-size: 3rem;
+            font-weight: bold;
+            text-transform: uppercase;
+            text-shadow: 
+                2px 2px var(--neon-pink),
+                -2px -2px var(--neon-blue);
+            animation: glitch 1s infinite;
+        }
+
+        @keyframes glitch {
+            2%, 64% { transform: translate(2px,0) skew(0deg); }
+            4%, 60% { transform: translate(-2px,0) skew(0deg); }
+            62% { transform: translate(0,0) skew(5deg); }
+        }
+
+        nav {
+            background: #2a2a2a;
+            padding: 1rem;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin: 0;
+            padding: 0;
+        }
+
+        nav a {
+            color: #fff;
+            text-decoration: none;
+            padding: 0.5rem 1rem;
+            border: 2px solid transparent;
+            transition: all 0.3s;
+        }
+
+        nav a:hover {
+            border-color: var(--neon-pink);
+            text-shadow: 0 0 5px var(--neon-pink);
+        }
+
+        main {
+            max-width: 800px;
+            margin: 2rem auto;
+            padding: 0 1rem;
+        }
+
+        .blog-post {
+            background: #2a2a2a;
+            border-radius: 10px;
+            padding: 2rem;
+            margin-bottom: 2rem;
+            border: 1px solid #333;
+            transition: transform 0.3s;
+        }
+
+        .blog-post:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 5px 15px rgba(255, 97, 176, 0.2);
+        }
+
+        .tag {
+            background: var(--neon-pink);
+            color: #000;
+            padding: 0.2rem 0.5rem;
+            border-radius: 15px;
+            font-size: 0.8rem;
+            margin-right: 0.5rem;
+        }
+
+        .profile {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 1rem;
+        }
+
+        .profile-img {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background: var(--neon-blue);
+        }
+
+        footer {
+            text-align: center;
+            padding: 2rem;
+            background: #2a2a2a;
+            margin-top: 4rem;
+        }
+
+        .terminal {
+            background: #000;
+            padding: 1rem;
+            border-radius: 5px;
+            margin: 1rem 0;
+            font-family: 'Courier New', monospace;
+        }
+
+        .terminal::before {
+            content: "> ";
+            color: var(--neon-blue);
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="glitch-container">
+            <h1 class="glitch">TechNinja Chronicles</h1>
+        </div>
+        <p>Where code meets chaos (in a good way)</p>
+    </header>
+
+    <nav>
+        <ul>
+            <li><a href="#home">~/home</a></li>
+            <li><a href="#projects">/projects</a></li>
+            <li><a href="#about">/about.me</a></li>
+            <li><a href="#contact">/ping</a></li>
+        </ul>
+    </nav>
+
+    <main>
+        <article class="blog-post animate__animated animate__fadeIn">
+            <div class="profile">
+                <div class="profile-img"></div>
+                <div>
+                    <h3>Sarah.exe</h3>
+                    <p>Lead Chaos Engineer</p>
+                </div>
+            </div>
+            <h2>Why I Taught My Coffee Machine to Run Linux</h2>
+            <div>
+                <span class="tag">IoT</span>
+                <span class="tag">Coffee</span>
+                <span class="tag">Unnecessary Tech</span>
+            </div>
+            <p>So, last weekend I decided my coffee machine wasn't smart enough. Now it runs Arch Linux and tweets about its feelings. Here's how it went down...</p>
+            <div class="terminal">
+                $ sudo apt-get install coffee-consciousness
+            </div>
+        </article>
+
+        <article class="blog-post animate__animated animate__fadeIn">
+            <div class="profile">
+                <div class="profile-img"></div>
+                <div>
+                    <h3>Alex@void</h3>
+                    <p>Senior Bug Creator</p>
+                </div>
+            </div>
+            <h2>That Time I Accidentally Built Skynet While Fixing a Printer</h2>
+            <div>
+                <span class="tag">AI</span>
+                <span class="tag">Oops</span>
+                <span class="tag">Printers</span>
+            </div>
+            <p>In my defense, the printer started it. All I wanted was to print a PDF, but somehow ended up creating a sentient debugging system...</p>
+        </article>
+    </main>
+
+    <footer>
+        <p>© 2024 TechNinja Chronicles | Powered by caffeine and questionable decisions</p>
+        <p>No computers were harmed in the making of this blog (much)</p>
+    </footer>
+</body>
+</html>
