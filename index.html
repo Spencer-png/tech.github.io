@@ -3,57 +3,83 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>TECH HAUS</title>
+    <title>Tech or Treat</title>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" rel="stylesheet">
     <style>
         :root {
-            --neon-pink: #ff61b0;
-            --neon-blue: #00f6ff;
+            --halloween-orange: #ff6b1a;
+            --spooky-purple: #9b4dca;
+            --ghost-white: #f8f8ff;
+            --midnight-black: #1a1a1a;
+            --pumpkin-glow: #ffd700;
         }
         
         body {
-            font-family: monospace;
-            background-color: #1a1a1a;
-            color: #ffffff;
+            font-family: 'Courier New', monospace;
+            background-color: var(--midnight-black);
+            color: var(--ghost-white);
             line-height: 1.6;
             margin: 0;
             padding: 0;
+            background-image: url('/api/placeholder/400/400');
+            background-repeat: repeat;
+            position: relative;
+        }
+
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle at 50% 50%, transparent, var(--midnight-black));
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        .spider-web {
+            position: fixed;
+            top: 0;
+            right: 0;
+            width: 200px;
+            height: 200px;
+            opacity: 0.2;
+            pointer-events: none;
         }
 
         header {
-            background: linear-gradient(45deg, var(--neon-pink), var(--neon-blue));
+            background: linear-gradient(45deg, var(--halloween-orange), var(--spooky-purple));
             padding: 2rem;
             text-align: center;
             position: relative;
             overflow: hidden;
+            border-bottom: 3px solid var(--pumpkin-glow);
         }
 
-        .glitch-container {
-            position: relative;
-        }
-
-        .glitch {
-            font-size: 3rem;
+        .haunted-title {
+            font-size: 3.5rem;
             font-weight: bold;
-            text-transform: uppercase;
+            color: var(--ghost-white);
             text-shadow: 
-                2px 2px var(--neon-pink),
-                -2px -2px var(--neon-blue);
-            animation: glitch 1s infinite;
+                0 0 10px var(--pumpkin-glow),
+                0 0 20px var(--halloween-orange),
+                0 0 30px var(--spooky-purple);
+            animation: float 3s ease-in-out infinite;
         }
 
-        @keyframes glitch {
-            2%, 64% { transform: translate(2px,0) skew(0deg); }
-            4%, 60% { transform: translate(-2px,0) skew(0deg); }
-            62% { transform: translate(0,0) skew(5deg); }
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
         }
 
         nav {
-            background: #2a2a2a;
+            background: rgba(26, 26, 26, 0.9);
             padding: 1rem;
             position: sticky;
             top: 0;
             z-index: 100;
+            border-bottom: 2px solid var(--halloween-orange);
         }
 
         nav ul {
@@ -66,7 +92,7 @@
         }
 
         nav a {
-            color: #fff;
+            color: var(--ghost-white);
             text-decoration: none;
             padding: 0.5rem 1rem;
             border: 2px solid transparent;
@@ -74,33 +100,53 @@
         }
 
         nav a:hover {
-            border-color: var(--neon-pink);
-            text-shadow: 0 0 5px var(--neon-pink);
+            border-color: var(--halloween-orange);
+            text-shadow: 0 0 10px var(--pumpkin-glow);
+            color: var(--halloween-orange);
         }
 
         main {
             max-width: 800px;
             margin: 2rem auto;
             padding: 0 1rem;
+            position: relative;
+            z-index: 2;
         }
 
         .blog-post {
-            background: #2a2a2a;
+            background: rgba(26, 26, 26, 0.9);
             border-radius: 10px;
             padding: 2rem;
             margin-bottom: 2rem;
-            border: 1px solid #333;
+            border: 1px solid var(--halloween-orange);
             transition: transform 0.3s;
+            position: relative;
+            overflow: hidden;
         }
 
         .blog-post:hover {
             transform: translateY(-5px);
-            box-shadow: 0 5px 15px rgba(255, 97, 176, 0.2);
+            box-shadow: 0 5px 15px rgba(255, 107, 26, 0.3);
+        }
+
+        .blog-post::before {
+            content: '👻';
+            position: absolute;
+            top: -20px;
+            right: -20px;
+            font-size: 2rem;
+            opacity: 0;
+            transition: all 0.3s;
+        }
+
+        .blog-post:hover::before {
+            opacity: 1;
+            transform: translate(-20px, 20px);
         }
 
         .tag {
-            background: var(--neon-pink);
-            color: #000;
+            background: var(--halloween-orange);
+            color: var(--midnight-black);
             padding: 0.2rem 0.5rem;
             border-radius: 15px;
             font-size: 0.8rem;
@@ -118,14 +164,16 @@
             width: 50px;
             height: 50px;
             border-radius: 50%;
-            background: var(--neon-blue);
+            background: var(--spooky-purple);
+            position: relative;
         }
 
-        footer {
-            text-align: center;
-            padding: 2rem;
-            background: #2a2a2a;
-            margin-top: 4rem;
+        .profile-img::after {
+            content: '🎃';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
         }
 
         .terminal {
@@ -134,28 +182,51 @@
             border-radius: 5px;
             margin: 1rem 0;
             font-family: 'Courier New', monospace;
+            border: 1px solid var(--halloween-orange);
+            position: relative;
         }
 
         .terminal::before {
-            content: "> ";
-            color: var(--neon-blue);
+            content: "🦇 ";
+            margin-right: 5px;
+        }
+
+        footer {
+            text-align: center;
+            padding: 2rem;
+            background: rgba(26, 26, 26, 0.9);
+            margin-top: 4rem;
+            border-top: 3px solid var(--halloween-orange);
+            position: relative;
+            z-index: 2;
+        }
+
+        .floating-ghost {
+            position: fixed;
+            bottom: 20px;
+            left: -50px;
+            font-size: 2rem;
+            animation: floatAcross 15s linear infinite;
+        }
+
+        @keyframes floatAcross {
+            from { transform: translateX(-50px); }
+            to { transform: translateX(calc(100vw + 50px)); }
         }
     </style>
 </head>
 <body>
     <header>
-        <div class="glitch-container">
-            <h1 class="glitch">TECH HAUS</h1>
-        </div>
-        <p>Where code meets chaos (in a good way)</p>
+        <h1 class="haunted-title">Tech or Treat</h1>
+        <p>Where bugs are features and ghosts debug your code</p>
     </header>
 
     <nav>
         <ul>
-            <li><a href="#home">~/home</a></li>
-            <li><a href="#projects">/projects</a></li>
-            <li><a href="#about">/about.me</a></li>
-            <li><a href="#contact">/ping</a></li>
+            <li><a href="#home">🏚️ /haunt</a></li>
+            <li><a href="#projects">🎃 /hex</a></li>
+            <li><a href="#about">👻 /boo.js</a></li>
+            <li><a href="#contact">🦇 /summon</a></li>
         </ul>
     </nav>
 
@@ -164,19 +235,20 @@
             <div class="profile">
                 <div class="profile-img"></div>
                 <div>
-                    <h3>Sarah.exe</h3>
-                    <p>Lead Chaos Engineer</p>
+                    <h3>GhostInTheMachine.exe</h3>
+                    <p>Paranormal Programming Lead</p>
                 </div>
             </div>
-            <h2>Why I Taught My Coffee Machine to Run Linux</h2>
+            <h2>The Haunted Kubernetes Cluster: A DevOps Horror Story</h2>
             <div>
-                <span class="tag">IoT</span>
-                <span class="tag">Coffee</span>
-                <span class="tag">Unnecessary Tech</span>
+                <span class="tag">Spooky Systems</span>
+                <span class="tag">Haunted Hardware</span>
+                <span class="tag">Ghost in the Shell</span>
             </div>
-            <p>So, last weekend I decided my coffee machine wasn't smart enough. Now it runs Arch Linux and tweets about its feelings. Here's how it went down...</p>
+            <p>It was a dark and stormy night when our pods started mysteriously replicating themselves. The logs showed commits from developers who left years ago...</p>
             <div class="terminal">
-                $ sudo apt-get install coffee-consciousness
+                $ kubectl get haunted-pods --namespace=spooky
+                ERROR: THE PODS ARE CALLING FROM INSIDE THE CLUSTER
             </div>
         </article>
 
@@ -184,23 +256,25 @@
             <div class="profile">
                 <div class="profile-img"></div>
                 <div>
-                    <h3>Alex@void</h3>
-                    <p>Senior Bug Creator</p>
+                    <h3>ZombieCode.js</h3>
+                    <p>Undead Code Resurrector</p>
                 </div>
             </div>
-            <h2>That Time I Accidentally Built Skynet While Fixing a Printer</h2>
+            <h2>Legacy Code That Refuses to Die: A Technical Necromancer's Tale</h2>
             <div>
-                <span class="tag">AI</span>
-                <span class="tag">Oops</span>
-                <span class="tag">Printers</span>
+                <span class="tag">Zombie Code</span>
+                <span class="tag">Technical Debt</span>
+                <span class="tag">Necromantic Networks</span>
             </div>
-            <p>In my defense, the printer started it. All I wanted was to print a PDF, but somehow ended up creating a sentient debugging system...</p>
+            <p>They said the COBOL mainframe was dead. They were wrong. Now it's sending emails... from 1983.</p>
         </article>
     </main>
 
     <footer>
-        <p>© 2024 TECH HAUS | Powered by caffeine and questionable decisions</p>
-        <p>No computers were harmed in the making of this blog (much)</p>
+        <p>© 2024 Tech or Treat | Powered by dark magic and deprecated APIs</p>
+        <p>Warning: This site may contain traces of cursed code and vengeful variables</p>
     </footer>
+
+    <div class="floating-ghost">👻</div>
 </body>
 </html>
